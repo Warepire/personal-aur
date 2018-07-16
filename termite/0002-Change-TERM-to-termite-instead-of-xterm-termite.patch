@@ -1,0 +1,154 @@
+From c46182924afe60cd1d076fd32bc9219226ea03fb Mon Sep 17 00:00:00 2001
+From: Bruno Inec <brunoinec@gmail.com>
+Date: Sun, 29 Apr 2018 17:54:35 +0200
+Subject: [PATCH] Change $TERM to termite instead of xterm-termite
+
+---
+ Makefile         |  6 ++++--
+ README.rst       | 28 ++++++++++++++++++----------
+ man/termite.1    |  4 ++--
+ termite.cc       |  2 +-
+ termite.terminfo |  2 +-
+ 5 files changed, 26 insertions(+), 16 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index b115f42..a366e5f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -35,13 +35,15 @@ LDLIBS := ${shell pkg-config --libs ${GTK} ${VTE}}
+ termite: termite.cc url_regex.hh util/clamp.hh util/maybe.hh util/memory.hh
+ 	${CXX} ${CXXFLAGS} ${LDFLAGS} $< ${LDLIBS} -o $@
+ 
+-install: termite termite.desktop termite.terminfo
+-	mkdir -p ${DESTDIR}${TERMINFO}
++install: termite termite.desktop
+ 	install -Dm755 termite ${DESTDIR}${PREFIX}/bin/termite
+ 	install -Dm644 config ${DESTDIR}/etc/xdg/termite/config
+ 	install -Dm644 termite.desktop ${DESTDIR}${PREFIX}/share/applications/termite.desktop
+ 	install -Dm644 man/termite.1 ${DESTDIR}${PREFIX}/share/man/man1/termite.1
+ 	install -Dm644 man/termite.config.5 ${DESTDIR}${PREFIX}/share/man/man5/termite.config.5
++
++terminfo: termite.terminfo
++	mkdir -p ${DESTDIR}${TERMINFO}
+ 	tic -x -o ${DESTDIR}${TERMINFO} termite.terminfo
+ 
+ uninstall:
+diff --git a/README.rst b/README.rst
+index 276b3ea..ddd611a 100644
+--- a/README.rst
++++ b/README.rst
+@@ -25,10 +25,13 @@ used as a fallback.
+ 
+ BUILDING
+ ========
+-::
++.. code-block:: bash
+ 
+     git clone --recursive https://github.com/thestinger/termite.git
+     cd termite && make
++    # If ncurses version is under 6.1 then also do:
++    make terminfo
++
+ 
+ KEYBINDINGS
+ ===========
+@@ -77,7 +80,7 @@ INSERT MODE
+ 
+        .. code:: sh
+ 
+-            if [[ $TERM == xterm-termite ]]; then
++            if [[ $TERM == termite ]]; then
+               . /etc/profile.d/vte.sh
+               __vte_osc7
+             fi
+@@ -87,7 +90,7 @@ INSERT MODE
+ 
+        .. code:: sh
+ 
+-            if [[ $TERM == xterm-termite ]]; then
++            if [[ $TERM == termite ]]; then
+               . /etc/profile.d/vte.sh
+               __vte_prompt_command
+             fi
+@@ -196,20 +199,25 @@ occur:
+ 
+ ::
+ 
+-    Error opening terminal: xterm-termite
++    Error opening terminal: termite
+ 
+-To solve this issue, install the termite terminfo on your remote system.
++To solve this issue, on your remote system either update ncurses to the latest
++version (>=6.1) or, if you can't, install the termite terminfo manually.
+ 
+ On Arch Linux:
+ 
+-::
++.. code-block:: bash
+ 
+-        pacman -S termite-terminfo
++    sudo pacman -S termite-terminfo
+ 
+ On other systems:
+ 
+-
+-::
++.. code-block:: bash
+ 
+     wget https://raw.githubusercontent.com/thestinger/termite/master/termite.terminfo
+-    tic -x termite.terminfo
++
++    tic -x termite.terminfo # for local installation (in ~/.terminfo)
++
++    or
++
++    sudo tic -x termite.terminfo # for system-wide installation 
+diff --git a/man/termite.1 b/man/termite.1
+index 7136dbe..b407b16 100644
+--- a/man/termite.1
++++ b/man/termite.1
+@@ -179,7 +179,7 @@ The directory can be set by a process running in the terminal. For
+ example, with \fRzsh\fP:
+ .IP
+ .nf
+-if [[ $TERM == xterm-termite ]]; then
++if [[ $TERM == termite ]]; then
+   . /etc/profile.d/vte.sh
+   __vte_osc7
+ fi
+@@ -188,7 +188,7 @@ fi
+ or for example, with \fRbash\fP:
+ .IP
+ .nf
+-if [[ $TERM == xterm-termite ]]; then
++if [[ $TERM == termite ]]; then
+   . /etc/profile.d/vte.sh
+   __vte_prompt_command
+ fi
+diff --git a/termite.cc b/termite.cc
+index ea6e965..5477b24 100644
+--- a/termite.cc
++++ b/termite.cc
+@@ -1623,7 +1623,7 @@ static void on_alpha_screen_changed(GtkWindow *window, GdkScreen *, void *) {
+ 
+ int main(int argc, char **argv) {
+     GError *error = nullptr;
+-    const char *const term = "xterm-termite";
++    const char *const term = "termite";
+     char *directory = nullptr;
+     gboolean version = FALSE, hold = FALSE;
+ 
+diff --git a/termite.terminfo b/termite.terminfo
+index 4951986..aa6cd8c 100644
+--- a/termite.terminfo
++++ b/termite.terminfo
+@@ -1,5 +1,5 @@
+ # vim: noet:ts=8:sw=8:sts=0
+-xterm-termite|VTE-based terminal,
++termite|VTE-based terminal,
+ 	am,
+ 	bce,
+ 	ccc,
+-- 
+2.18.0
+
