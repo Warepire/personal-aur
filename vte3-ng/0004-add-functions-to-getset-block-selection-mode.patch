@@ -3,6 +3,8 @@ From: Jelle van der Waa <jelle@vdwaa.nl>
 Date: Sat, 13 Feb 2016 22:38:21 +0100
 Subject: [PATCH] add functions to get/set block selection mode
 
+Upstream-Status: Rejected
+Patch-URL: https://github.com/thestinger/vte-ng/commit/27ff0d7d1bd25bfbcd6c561c6223383c7ebfd5fe
 ---
  src/vte/vteterminal.h |  5 +++++
  src/vtegtk.cc         | 25 +++++++++++++++++++++++++

@@ -3,6 +3,8 @@ From: Jelle van der Waa <jelle@vdwaa.nl>
 Date: Sat, 13 Feb 2016 22:47:44 +0100
 Subject: [PATCH] expose function for getting the selected text
 
+Upstream-Status: Rejected
+Patch-URL: https://github.com/thestinger/vte-ng/commit/290160905fb8aa4a30f2b0c3abef3aea2b00ac22
 ---
  src/vte/vteterminal.h | 4 +++-
  src/vtegtk.cc         | 7 +++++++

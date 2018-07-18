@@ -22,12 +22,12 @@ source=("git+https://git.gnome.org/browse/vte#commit=$_commit"
         "0005-expose-function-for-getting-the-selected-text.patch"
         "0006-Add-function-to-get-selection-position.patch")
 sha256sums=('SKIP'
-            'e58f4fc2e6fdff80304ce5bd7b507533261d8534d004128d70bf1de4c62524d2'
-            'e5fe5d281a7fbd397e279661da3b835e07215d74d4b89ea3bf028971d2dd897a'
-            '22ca30a5c155b5a69bd71dc956a38aaad25e6c7e77cef5e10615e9abab6af391'
-            '32c18f2e63a947b0dbf1ad029b061ec8eedec70ce162428fd0282bd035a717d8'
-            'f55b57e33374b3906542ecc9b22da3e158bacb0610dcafcde916de2e118db48a'
-            '6b518ff0a2ad4f58cce5fc23ee4471f563879203160aee638563832d89e8ccfe')
+            '31e7e79b29c0e121e61b1d175a7724764c0569b6bad41bdb84503da5506d9deb'
+            '081b4365b8b10a09d22ea51b16bd1c7b11065027bbbe34d261cddf078041464a'
+            'c92f34fcfb6bbf06569d7c7ef6d91d86f74750d6f6208d9273cf6a295296ad50'
+            '33a788062bbaf2acd0e0d6a224b96882b818ee55cf937a3fd30787569b756aa9'
+            '0b36fb13752291de9c00603a1426e08ad446fe052f04263b1216555e90f11bad'
+            '99642656313e26aee209bdd3788f23607f5c7a0f992d0a55684bef20cbcfad47')
 
 pkgver() {
   cd vte

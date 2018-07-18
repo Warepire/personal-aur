@@ -3,6 +3,8 @@ From: Jelle van der Waa <jelle@vdwaa.nl>
 Date: Sat, 13 Feb 2016 22:01:59 +0100
 Subject: [PATCH] expose functions for pausing unpausing output
 
+Upstream-Status: Rejected
+Patch-URL: https://github.com/thestinger/vte-ng/commit/988b48e3d5dc37b9cc02d48a5090acf897ed929c
 ---
  src/vte/vteterminal.h |  6 ++++++
  src/vtegtk.cc         | 26 ++++++++++++++++++++++++++

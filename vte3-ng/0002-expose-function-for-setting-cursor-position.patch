@@ -3,6 +3,8 @@ From: Jelle van der Waa <jelle@vdwaa.nl>
 Date: Sat, 13 Feb 2016 22:18:01 +0100
 Subject: [PATCH] expose function for setting cursor position
 
+Upstream-Status: Rejected
+Patch-URL: https://github.com/thestinger/vte-ng/commit/2aac74bd60d1e6e1dabe2b161b7383da26fa7789
 ---
  src/vte/vteterminal.h |  5 +++++
  src/vtegtk.cc         | 24 ++++++++++++++++++++++++

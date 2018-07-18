@@ -3,6 +3,8 @@ From: Kenneth Lyons <ixjlyons@gmail.com>
 Date: Sat, 9 Apr 2016 12:11:09 -0700
 Subject: [PATCH] Add function to get selection position.
 
+Upstream-Status: Inappropriate [Not my patch to submit]
+Patch-URL: https://github.com/thestinger/termite/issues/287#issuecomment-207836220
 ---
  src/vte/vteterminal.h |  4 ++++
  src/vtegtk.cc         | 24 ++++++++++++++++++++++++
