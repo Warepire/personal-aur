@@ -15,9 +15,9 @@ provides=(termite)
 source=("git+https://github.com/thestinger/termite.git"
         "0001-Move-cursor-along-with-next-prev-search-match-select.patch"
         "0002-Change-TERM-to-termite-instead-of-xterm-termite.patch")
-md5sums=('SKIP'
-         '9462751cb2591160fc0e6a0561ccbca8'
-         'a14c05c4454653ae510bc734e037c7aa')
+sha256sums=('SKIP'
+            '7416e7bf80cc38127591337fa8c774447c0b9b85b11b38828eafdabf5eddee1e'
+            'b03bf663feab19b1fcfce55e8c46d778e14d49eb08dea15c5b248e3476933318')
 
 pkgver() {
   cd termite

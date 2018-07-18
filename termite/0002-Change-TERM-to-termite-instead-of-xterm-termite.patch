@@ -3,6 +3,8 @@ From: Bruno Inec <brunoinec@gmail.com>
 Date: Sun, 29 Apr 2018 17:54:35 +0200
 Subject: [PATCH] Change $TERM to termite instead of xterm-termite
 
+Upstream-Status: Pending
+Patch-URI: https://github.com/thestinger/termite/pull/591
 ---
  Makefile         |  6 ++++--
  README.rst       | 28 ++++++++++++++++++----------
