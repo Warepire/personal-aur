@@ -1,0 +1,39 @@
+pkgname=pidgin-sipe-media-git
+pkgver=1.23.3.r77.gfb6e899c
+pkgrel=1
+pkgdesc="Third-party Pidgin plugin for Microsoft Office 365/Lync/LCS/OCS - Tieto media fork"
+arch=('x86_64')
+license=('GPL2')
+url="https://github.com/tieto/sipe"
+# depends as I need them, some are in theory optional.
+depends=('gmime' 'libpurple' 'glib2' 'libxml2' 'nss' 'dbus' 'farstream' 'gstreamer' 'gst-plugins-base' 'libnice' 'freerdp' 'krb5' 'gss-ntlmssp')
+makedepends=('intltool' 'pkg-config')
+source=('git+https://github.com/tieto/sipe.git#branch=launchpad-next')
+sha256sums=('SKIP')
+provides=(pidgin-sipe)
+conflicts=(pidgin-sipe)
+
+pkgver() {
+  cd sipe
+  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd sipe
+
+  ./autogen.sh
+}
+
+build() {
+  cd sipe
+
+  ./configure --prefix=/usr --disable-telepathy
+
+  make
+}
+
+package() {
+  cd sipe
+
+  make DESTDIR="$pkgdir" install
+}
