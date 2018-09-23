@@ -1,0 +1,34 @@
+pkgname=gss-ntlmssp-git
+pkgver=v0.7.0.r3.g3599d81
+pkgrel=1
+pkgdesc="A GSSAPI Mechanism that implements NTLMSSP"
+arch=(x86_64)
+url="https://pagure.io/gssntlmssp"
+license=(LGPLv3)
+depends=('autoconf' 'automake' 'docbook-xsl' 'doxygen' 'findutils' 'krb5' 'libtool' 'libxml2' 'libxslt' 'libunistring' 'm4' 'perl-extutils-pkgconfig' 'openssl')
+source=("git+https://pagure.io/gssntlmssp.git")
+sha512sums=('SKIP')
+provides=(gss-ntlmssp)
+conflicts=(gss-ntlmssp)
+
+pkgver() {
+  cd gssntlmssp
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd gssntlmssp
+  autoreconf -f -i
+}
+
+build() {
+  cd gssntlmssp
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd gssntlmssp
+  make DESTDIR="${pkgdir}" install
+  install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+}
