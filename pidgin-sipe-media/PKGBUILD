@@ -6,7 +6,7 @@ arch=('x86_64')
 license=('GPL2')
 url="https://github.com/tieto/sipe"
 # depends as I need them, some are in theory optional.
-depends=('gmime' 'libpurple' 'glib2' 'libxml2' 'nss' 'dbus' 'farstream' 'gstreamer' 'gst-plugins-base' 'libnice' 'freerdp' 'krb5' 'gss-ntlmssp')
+depends=('gmime' 'libpurple' 'glib2' 'libxml2' 'nss' 'dbus' 'farstream' 'gstreamer' 'gst-plugins-base' 'libnice' 'freerdp-with-shadow-server' 'krb5' 'gss-ntlmssp')
 makedepends=('intltool' 'pkg-config')
 source=('git+https://github.com/tieto/sipe.git#branch=launchpad-next')
 sha256sums=('SKIP')
