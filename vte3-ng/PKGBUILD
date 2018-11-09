@@ -2,7 +2,7 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=vte3-ng-with-nN-cursor-move-patch
-pkgver=0.54.0
+pkgver=0.54.2
 pkgrel=1
 pkgdesc="Virtual Terminal Emulator widget for use with GTK3"
 url="https://wiki.gnome.org/Apps/Terminal/VTE"
@@ -13,8 +13,8 @@ depends=(gtk3 pcre2 gnutls vte-common)
 makedepends=(intltool gobject-introspection vala glade git gtk-doc gperf)
 conflicts=(vte3)
 provides=(vte3)
-_commit=2b7729bab7ba1faa05be0c5b480c0a33f3e360aa  # tags/0.54.0
-source=("git+https://git.gnome.org/browse/vte#commit=$_commit"
+_commit=6c37e5164aef8b2ac3dea02f6c1a3152dad93fda  # tags/0.54.2
+source=("git+https://gitlab.gnome.org/GNOME/vte.git/#commit=$_commit"
         "0001-expose-functions-for-pausing-unpausing-output.patch"
         "0002-expose-function-for-setting-cursor-position.patch"
         "0003-add-function-for-setting-the-text-selections.patch"
@@ -22,12 +22,12 @@ source=("git+https://git.gnome.org/browse/vte#commit=$_commit"
         "0005-expose-function-for-getting-the-selected-text.patch"
         "0006-Add-function-to-get-selection-position.patch")
 sha256sums=('SKIP'
-            '31e7e79b29c0e121e61b1d175a7724764c0569b6bad41bdb84503da5506d9deb'
-            '081b4365b8b10a09d22ea51b16bd1c7b11065027bbbe34d261cddf078041464a'
-            'c92f34fcfb6bbf06569d7c7ef6d91d86f74750d6f6208d9273cf6a295296ad50'
-            '33a788062bbaf2acd0e0d6a224b96882b818ee55cf937a3fd30787569b756aa9'
-            '0b36fb13752291de9c00603a1426e08ad446fe052f04263b1216555e90f11bad'
-            '99642656313e26aee209bdd3788f23607f5c7a0f992d0a55684bef20cbcfad47')
+            '51af803b893c8269a943ff520d934488073c1d28d4bf6693d386d790ec84541a'
+            '604f0594c2ed9fef97483a721f8e8abf067a6a2a2fc1fd492d012e24861e0d75'
+            '3f2486b08e4452421d8de58826b1cf99925514af2b95abaf1b34d081bc3eb1d8'
+            'e74d000a729eabf31f4aabd08433790a7700fcccb6f302916992fb750f3d28ea'
+            'a6d90ac8d391d6906dbed22041c597176366501ff625a1b222f1fcf9f83e78f4'
+            'fe60f2db4c2afb21da509a109cbdee7a83d7c2cf63839fb8a39f5263bd65dece')
 
 pkgver() {
   cd vte

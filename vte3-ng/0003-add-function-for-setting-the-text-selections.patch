@@ -4,7 +4,7 @@ Date: Sat, 13 Feb 2016 22:25:19 +0100
 Subject: [PATCH] add function for setting the text selections
 
 Upstream-Status: Rejected
-Patch-URL: https://github.com/thestinger/vte-ng/commit/767603cea50145c74d5ac1fc2b53918e4f939060
+Patch-URI: https://github.com/thestinger/vte-ng/commit/767603cea50145c74d5ac1fc2b53918e4f939060
 ---
  src/vte/vteterminal.h |  4 ++++
  src/vtegtk.cc         | 20 ++++++++++++++++++++
