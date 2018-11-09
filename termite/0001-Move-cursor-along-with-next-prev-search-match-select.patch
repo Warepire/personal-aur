@@ -4,7 +4,7 @@ Date: Fri, 8 Apr 2016 22:09:15 -0700
 Subject: [PATCH] Move cursor along with next/prev search match selection.
 
 Upstream-Status: Rejected
-Patch-URL: https://github.com/thestinger/termite/issues/287#issuecomment-207836220
+Patch-URI: https://github.com/thestinger/termite/issues/287#issuecomment-207836220
 ---
  termite.cc | 8 ++++++++
  1 file changed, 8 insertions(+)
