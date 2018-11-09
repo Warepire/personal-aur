@@ -1,5 +1,5 @@
 pkgname=pidgin-sipe-media-git
-pkgver=1.23.3.r77.gfb6e899c
+pkgver=1.23.3.r84.ga8a52c62
 pkgrel=1
 pkgdesc="Third-party Pidgin plugin for Microsoft Office 365/Lync/LCS/OCS - Tieto media fork"
 arch=('x86_64')
@@ -8,8 +8,10 @@ url="https://github.com/tieto/sipe"
 # depends as I need them, some are in theory optional.
 depends=('gmime' 'libpurple' 'glib2' 'libxml2' 'nss' 'dbus' 'farstream' 'gstreamer' 'gst-plugins-base' 'libnice' 'freerdp-with-shadow-server' 'krb5' 'gss-ntlmssp')
 makedepends=('intltool' 'pkg-config')
-source=('git+https://github.com/tieto/sipe.git#branch=launchpad-next')
-sha256sums=('SKIP')
+source=('git+https://github.com/tieto/sipe.git#branch=launchpad-next'
+        '0001-sipmsg-insert-line-breaks-between-paragraphs.patch')
+sha256sums=('SKIP'
+            '4456cc3c079be9332e6367eeb5e2771d0fe166ef2bfce9d231e5552b221c6eb5')
 provides=(pidgin-sipe)
 conflicts=(pidgin-sipe)
 
@@ -20,6 +22,8 @@ pkgver() {
 
 prepare() {
   cd sipe
+
+  patch -Np1 -i "${srcdir}/0001-sipmsg-insert-line-breaks-between-paragraphs.patch"
 
   ./autogen.sh
 }

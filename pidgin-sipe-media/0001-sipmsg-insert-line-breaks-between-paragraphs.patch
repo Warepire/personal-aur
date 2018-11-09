@@ -1,0 +1,82 @@
+From 087937f81634bd315444c38b7e0906280e8d2895 Mon Sep 17 00:00:00 2001
+From: Allen Wild <allenwild93@gmail.com>
+Date: Tue, 23 Oct 2018 17:01:57 -0400
+Subject: [PATCH] sipmsg: insert line breaks between paragraphs
+
+Pasting text into Lync causes the lines to be split with <p></p> tags,
+but pidgin doesn't display this and puts everything on one ugly line.
+
+This is really a pidgin bug but I can hack around it in sipe by sneaking
+in <br/> after every </p> we see (unless it's at the end of the message
+or there's already a <br> tag)
+
+Upstream-Status: Inappropriate [Hack/Workaround]
+Patch-URI: https://github.com/tieto/sipe/issues/8#issuecomment-433237822
+---
+ src/core/sipmsg.c | 43 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+
+diff --git a/src/core/sipmsg.c b/src/core/sipmsg.c
+index 4bbfb3e..d6a1eed 100644
+--- a/src/core/sipmsg.c
++++ b/src/core/sipmsg.c
+@@ -584,6 +584,48 @@ static void get_html_message_mime_cb(gpointer user_data,
+ 	}
+ }
+ 
++/* WILD ADD
++ * insert substring ins into the position pos of original string str.
++ * str will be free'd, returns a pointer to the new string
++ */
++static gchar *wild_insert_into_str(gchar *str, const char *ins, size_t pos)
++{
++	size_t orig_len = strlen(str);
++	size_t ins_len = strlen(ins);
++	gchar *new = g_malloc(orig_len + ins_len + 1);
++	if (!new)
++		return str;
++
++	if (pos > orig_len)
++		pos = orig_len;
++
++	memcpy(new, str, pos);
++	memcpy(new+pos, ins, ins_len);
++	memcpy(new+pos+ins_len, str+pos, orig_len-pos+1);
++
++	g_free(str);
++	return new;
++}
++
++static gchar *wild_p_br_hack(gchar *str)
++{
++	size_t pos = 0;
++	while (pos < strlen(str)-4)
++	{
++		/* find </p> not followed by <br */
++		if (!g_ascii_strncasecmp(str+pos, "</p>", 4) &&
++		    g_ascii_strncasecmp(str+pos+4, "<br", 3))
++		{
++			str = wild_insert_into_str(str, "<br/>", pos+4);
++			pos += 9;
++		}
++		else pos++;
++	}
++
++	return str;
++}
++/* WILD ADD END */
++
+ /* ms-text-format: text/plain; charset=UTF-8;msgr=WAAtAE0...DIADQAKAA0ACgA;ms-body=SGk= */
+ gchar *get_html_message(const gchar *ms_text_format_in, const gchar *body_in)
+ {
+@@ -640,6 +682,7 @@ gchar *get_html_message(const gchar *ms_text_format_in, const gchar *body_in)
+ 				*d++ = c;
+ 		*d = c;
+ 
++		res = wild_p_br_hack(res); /* WILD ADD */
+ 	} else {
+ 		char *tmp = res;
+ 		res = g_markup_escape_text(res, -1); // as this is not html
+-- 
+2.19.1
+
