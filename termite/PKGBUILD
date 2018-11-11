@@ -2,7 +2,7 @@
 # Maintainer: Daniel Micay <danielmicay@gmail.com>
 
 pkgname=('termite-git-with-nN-cursor-move-patch')
-pkgver=v13.r11.g3e2c10f
+pkgver=v14.r0.g1b67c5c
 pkgrel=1
 pkgdesc="A simple VTE-based terminal"
 arch=('x86_64')
@@ -16,7 +16,7 @@ source=("git+https://github.com/thestinger/termite.git"
         "0001-Move-cursor-along-with-next-prev-search-match-select.patch"
         "0002-Change-TERM-to-termite-instead-of-xterm-termite.patch")
 sha256sums=('SKIP'
-            '7416e7bf80cc38127591337fa8c774447c0b9b85b11b38828eafdabf5eddee1e'
+            '08e20604b715f80636dd08562ceccff18cec738ea19867028757ce44cdd1b8ef'
             'b03bf663feab19b1fcfce55e8c46d778e14d49eb08dea15c5b248e3476933318')
 
 pkgver() {
