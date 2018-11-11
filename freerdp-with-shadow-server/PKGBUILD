@@ -21,8 +21,7 @@ provides=('libwinpr-tools2.so' 'libfreerdp-client2.so' 'libfreerdp2.so'
           'libwinpr2.so' 'libfreerdp-server2.so' 'libfreerdp-shadow2.so'
           'libfreerdp-shadow-subsystem2.so')
 #source=("FreeRDP-${_pkgver}::git://github.com/FreeRDP/FreeRDP.git#commit=${_commit}")
-source=($pkgname-$pkgver.tar.gz::https://github.com/FreeRDP/FreeRDP/archive/${pkgver/_/-}.tar.gz
-	fix_nla-8cd156a-backport.patch)
+source=($pkgname-$pkgver.tar.gz::https://github.com/FreeRDP/FreeRDP/archive/${pkgver/_/-}.tar.gz)
 sha256sums=('d32d4a092e468deb3a1296e8358f900bf7e80afd0876d815ba43622ce29596c5')
 provides=(freerdp)
 conflicts=(freerdp)
