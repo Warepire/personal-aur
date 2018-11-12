@@ -1,12 +1,12 @@
 pkgname=pidgin-sipe-media-git
-pkgver=1.23.3.r84.ga8a52c62
+pkgver=1.23.3.r92.gf788f8cd
 pkgrel=1
 pkgdesc="Third-party Pidgin plugin for Microsoft Office 365/Lync/LCS/OCS - Tieto media fork"
 arch=('x86_64')
 license=('GPL2')
 url="https://github.com/tieto/sipe"
 # depends as I need them, some are in theory optional.
-depends=('gmime' 'libpurple' 'glib2' 'libxml2' 'nss' 'dbus' 'farstream' 'gstreamer' 'gst-plugins-base' 'libnice' 'freerdp-with-shadow-server' 'krb5' 'gss-ntlmssp')
+depends=('gmime' 'libpurple' 'glib2' 'libxml2' 'nss' 'dbus' 'farstream' 'gstreamer' 'gst-plugins-base' 'libnice' 'freerdp-with-shadow-server')
 makedepends=('intltool' 'pkg-config')
 source=('git+https://github.com/tieto/sipe.git#branch=launchpad-next'
         '0001-sipmsg-insert-line-breaks-between-paragraphs.patch')
@@ -31,7 +31,7 @@ prepare() {
 build() {
   cd sipe
 
-  ./configure --prefix=/usr --disable-telepathy
+  ./configure --prefix=/usr --disable-telepathy --without-krb5 --without-gssapi
 
   make
 }
