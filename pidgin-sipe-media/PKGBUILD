@@ -6,7 +6,7 @@ arch=('x86_64')
 license=('GPL2')
 url="https://github.com/tieto/sipe"
 # depends as I need them, some are in theory optional.
-depends=('gmime' 'libpurple' 'glib2' 'libxml2' 'nss' 'dbus' 'farstream' 'gstreamer' 'gst-plugins-base' 'libnice' 'freerdp-with-shadow-server')
+depends=('gmime' 'libpurple' 'glib2' 'libxml2' 'nss' 'dbus' 'farstream' 'gstreamer' 'gst-plugins-base' 'gst-plugins-bad' 'libnice' 'freerdp-with-shadow-server')
 makedepends=('intltool' 'pkg-config')
 source=('git+https://github.com/tieto/sipe.git#branch=launchpad-next'
         '0001-sipmsg-insert-line-breaks-between-paragraphs.patch')
